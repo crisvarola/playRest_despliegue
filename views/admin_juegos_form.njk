@@ -1,0 +1,95 @@
+{% extends "admin_base.njk" %}
+{% block titulo %}Juegos | Editar{% endblock %}
+{% block contenido %}
+    {% if (juego) %}
+        <h1>Edición de juego existente</h1>
+        <form action="/admin/{{ juego.id }}" method="post" enctype="multipart/form">
+            <input type="hidden" name="_method" value="put"/>
+            <div class="form-group mb-3">
+                <label for="titulo">Nombre:</label>
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre del juego..." value="{{ juego.nombre }}"/>
+            </div>
+            <div class="form-group mb-3">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" class="form-control" name="descripcion" placeholder="Descripción del juego..." value="{{ juego.descripcion }}"/>
+            </div>
+            <div class="form-group mb-3">
+                <label for="edad">Edad:</label>
+                <input type="text" class="form-control" name="edad" placeholder="Edad recomendada..." value="{{ juego.edad }}"/>
+            </div>
+            <div class="form-group mb-3">
+                <label for="jugadores">Jugadores:</label>
+                <input type="text" class="form-control" name="jugadores" placeholder="Numero de jugadores..." value="{{ juego.jugadores }}"/>
+            </div>
+            <div class="form-group mb-3">
+                <label for="tipo">Tipo:</label>
+                <input type="text" class="form-control" name="tipo" placeholder="Tipo de juego..." value="{{ juego.tipo }}"/>
+            </div>
+            <div class="form-group mb-3">
+                <label for="precio">Precio:</label>
+                <input type="text" class="form-control" name="precio" placeholder="Precio del juego..." value="{{ juego.precio }}"/>
+            </div>
+            <div class="form-group mb-3">
+                <label for="imagen">Imagen</label>
+                <input type="file" class="form-control" name="imagen" placeholder="Imagen del juego..." value="{{ juego.imagen }}"/>
+            </div>
+            <div class="form-group mb-3">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+        <div class="form-group mb-3">
+            <label for="editorial">Ediciones:</label>
+            {% for edicion in juego.ediciones %}
+                <div class="card m-1"style="width: 10rem;">
+                     <div class="card-body">
+                    <p class="card-title">{{ edicion.edicion }} - {{ edicion.anyo }}</p>
+                    <form action="/admin/ediciones/{{ juego.id }}/{{ edicion.id }}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="btn btn-warning m-1">Borrar</button>
+                    </form>
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert alert-danger">Este juego no tiene ediciones</div>
+            {% endfor %}
+            <a class="btn btn-dark m-1" href="/admin/ediciones/{{ juego.id }}">Añadir edición</a>
+        {% else %}
+            <h1>Añadir Juego Nuevo</h1>
+            <form action="/admin/{{ juego.id }}" method="post" enctype="multipart/form-data">
+                <div class="form-group mb-3">
+                    <label for="titulo">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre del juego..." value="{{ juego.nombre }}"/>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" class="form-control" name="descripcion" placeholder="Descripción del juego..." value="{{ juego.descripcion }}"/>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="edad">Edad:</label>
+                    <input type="text" class="form-control" name="edad" placeholder="Edad recomendada..." value="{{ juego.edad }}"/>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="jugadores">Jugadores:</label>
+                    <input type="text" class="form-control" name="jugadores" placeholder="Numero de jugadores..." value="{{ juego.jugadores }}"/>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="tipo">Tipo:</label>
+                    <input type="text" class="form-control" name="tipo" placeholder="Tipo de juego..." value="{{ juego.tipo }}"/>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="editorial">Ediciones:</label>
+                    <input type="text" class="form-control" name="editorial" placeholder="Editorial del juego..." value="{{ juego.ediciones }}"/>
+                    <div class="form-group mb-3">
+                        <label for="precio">Precio:</label>
+                        <input type="text" class="form-control" name="precio" placeholder="Precio del juego..." value="{{ juego.precio }}"/>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="imagen">Imagen</label>
+                        <input type="file" class="form-control" name="imagen" placeholder="Imagen del juego..." value="{{ juego.imagen }}"/>
+                    </div>
+                    <div class="form-group mb-3">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            {% endif %}
+        {% endblock %}

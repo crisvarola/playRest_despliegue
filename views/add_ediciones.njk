@@ -1,0 +1,19 @@
+{% extends "admin_base.njk" %}
+{% block titulo %}Juegos | Crear Edición{% endblock %}
+
+{% block contenido %}
+{% if (juego) %} 
+        <form action="/admin/ediciones/{{ juego.id }}" method="post" enctype="multipart/form"> 
+        <input type="hidden" name="_method" value="put" />  
+            <div class="form-group mb-3">
+                <label for="editorial">Ediciones:</label>
+                <input type="text" class="form-control" name="edicion"
+                    placeholder="Edición del juego..."/>
+                <label for="anyo">Año:</label>
+                <input type="text" class="form-control" name="anyo"
+                placeholder="Año..."  />
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+            {% endif %}
+{% endblock %}

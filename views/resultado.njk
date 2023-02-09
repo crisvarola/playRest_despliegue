@@ -1,0 +1,12 @@
+    
+    {% if juegos %}
+        {% for juego in juegos %}
+            <div class="juego">
+                <h2>{{ juego.nombre }}</h2>
+                <p>{{ juego.descripcion }}</p>
+                <a href="/juegos/{{ juego.id }}" class="btn btn-success">Ver ficha</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No se encontraron juegos con ese nombre.</p>
+    {% endif %}
