@@ -25,6 +25,7 @@ router.get('/usuarios', (req, res) => {
   password: '87654321'
   });
   usu2.save();
+  res.render('auth_login');
   }catch{
     res.render('publico_error', { error: "Error generando usuarios" });
   }
