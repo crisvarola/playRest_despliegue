@@ -2,9 +2,13 @@
 const bcrypt = require('bcrypt');
 const express = require("express");
 
-let Usuario = require(__dirname + "/../models/usuario.js");
-
 let router = express.Router();
+
+const mongoose = require('mongoose');
+const Usuario = require(__dirname + '/../models/usuario');
+
+mongoose.connect("mongodb://mymongodb/playrest_v3", { useNewUrlParser: true });
+
 
 // Vista de login
 router.get('/login', (req, res) => {
