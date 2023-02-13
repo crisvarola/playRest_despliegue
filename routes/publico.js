@@ -28,7 +28,18 @@ router.get('/', (req, res) => {
         });
     });
 
-    
+    router.get('/usuarios', (req, res) => {
+      Usuario.collection.drop();
+  
+      let usu1 = new Usuario({
+      login: 'May',
+      password: '12345678'
+      });
+  
+      usu1.save();
+      res.render("publico_index");
+  });
+      
 // Ficha de juego
 router.get('/:id', (req, res) => {
   Juego.findById(req.params.id).then(resultado => {
