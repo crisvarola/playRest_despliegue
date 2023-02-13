@@ -1,7 +1,10 @@
 const express = require("express");
 let Juego = require(__dirname + "/../models/juego.js");
 let router = express.Router();
+const mongoose = require('mongoose');
 const Usuario = require(__dirname + '/../models/usuario');
+
+mongoose.connect("mongodb://mymongodb/playrest_v3", { useNewUrlParser: true });
 
 // Listado general
 router.get('/', (req, res) => {
