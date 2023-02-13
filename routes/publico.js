@@ -1,6 +1,7 @@
 const express = require("express");
 let Juego = require(__dirname + "/../models/juego.js");
 let router = express.Router();
+const Usuario = require(__dirname + '/../models/usuario');
 
 // Listado general
 router.get('/', (req, res) => {
