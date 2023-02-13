@@ -3,7 +3,7 @@ let Juego = require(__dirname + "/../models/juego.js");
 const mongoose = require('mongoose');
 const Usuario = require(__dirname + '/../models/usuario');
 
-mongoose.connect("mongodb://mymongodb/playrest_v3", { useNewUrlParser: true });
+mongoose.connect("mongodb://mymongodb/playrest_v3");
 let router = express.Router();
 
 // Listado general
